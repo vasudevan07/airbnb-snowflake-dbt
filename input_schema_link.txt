@@ -1,0 +1,5 @@
+https://dbtlearn.s3.us-east-2.amazonaws.com/input_schema.png 
+
+## curl command to download
+
+curl https://dbtlearn.s3.us-east-2.amazonaws.com/input_schema.png -o assets/input_schema.png
