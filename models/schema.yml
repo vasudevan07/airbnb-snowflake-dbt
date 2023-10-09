@@ -2,13 +2,17 @@ version: 2
 
 models:
   - name: dim_listings_cleansed
+    description: Cleansed table which contains Airbnb listings.
     columns:
 
       - name: listing_id
+        description: Primary key for the listing
         tests:
           - unique
           - not_null
+
       - name: host_id
+        description: The hosts' id. References the host table.
         tests:
           - not_null
           - relationships:
@@ -16,6 +20,7 @@ models:
               field: host_id
       
       - name: room_type
+        description: Type of apartment/room
         tests:
           - accepted_values: 
               values: [
@@ -26,5 +31,69 @@ models:
               ]
       
       - name: minimum_nights
+        description: '{{ doc("dim_listings_cleansed__minimum_nights") }}'
         tests:
           - positive_value
+
+
+  - name: dim_hosts_cleansed
+    description: Cleansed table which contains the hosts' information.
+    columns:
+      - name: host_id
+        description: Hosts' unique identifier. Primary key for the hosts table.
+        tests:
+          - not_null
+          - unique
+
+      - name: host_name
+        description: name of the listing's host
+        tests:
+          - not_null
+
+      - name: is_superhost
+        description: Says whether the host is a superhost or not
+        tests:
+          - accepted_values:
+              values: [
+                't',
+                'f'
+              ]
+
+
+  - name: fct_reviews
+    description: Contains the reviews for each listing
+    columns:
+      - name: review_id
+        description: >
+          unique identifier for the review. 
+          Its the surrogate key of combination of rest of the columns
+          except the reviewer_sentiment.
+        tests:
+          - not_null
+
+      - name: listing_id
+        description: identifier for the listing
+        tests:
+          - relationships:
+              to: ref('dim_listings_cleansed')
+              field: listing_id
+      
+      - name: reviewer_name
+        description: Name of the reviewer
+        tests:
+          - not_null
+      
+      - name: review_text
+        description: Actual review content about the listings
+        tests:
+          - not_null
+
+      - name: reviewer_sentiment
+        description: sentiment analysis result of the review text
+        tests:
+          - accepted_values:
+              values: [
+                'positive',
+                'neutral',
+                'negative'
+              ]
