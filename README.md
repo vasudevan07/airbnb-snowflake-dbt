@@ -1,5 +1,5 @@
-# dbt-learn
-This is created to learn dbt by building simple model out of airbnb data. 
+# airbnb_snowflake_dbt
+This is created to learn dbt by building simple models out of airbnb data. 
 
 
 ### Using the starter project
