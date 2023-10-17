@@ -1,4 +1,4 @@
-name: "dbt prd pipeline"
+name: "publish dbt docs pipeline"
 
 # Triggers
 on:
@@ -12,13 +12,13 @@ on:
 jobs:
   # Build job
   build:
-     runs-on: ubuntu-latest
-     environment: github-pages
-     env:
-       DBT_USER: ${{ secrets.DBT_USER }}
-       DBT_PASSWORD: ${{ secrets.DBT_PASSWORD }}
-       SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
-       ENV_CODE: dev
+       runs-on: ubuntu-latest
+       environment: github-pages
+       env:
+          DBT_USER: ${{ secrets.DBT_USER }}
+          DBT_PASSWORD: ${{ secrets.DBT_PASSWORD }}
+          SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+          ENV_CODE: dev
 
        steps:
          - name: "Step 01 - Checkout current branch"
