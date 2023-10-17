@@ -1,4 +1,4 @@
-dbt_learn:
+airbnb_snowflake:
   outputs:
     dev:
       account: "{{ env_var('SNOWFLAKE_ACCOUNT') }}"
