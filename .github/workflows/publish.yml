@@ -1,13 +1,13 @@
 name: "publish dbt docs pipeline"
 
 # Triggers
-on: workflow_dispatch
+on: 
   # Triggers the workflow on push to main branch
-  # push:
-     # branches:
-       # - main
+  push:
+     branches:
+       - publish_docs_test
   # Triggers the workflow manually from GUI
-  
+  workflow_dispatch:
 
 jobs:
   # Build job
